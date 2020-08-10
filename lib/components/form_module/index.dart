@@ -12,25 +12,29 @@ class FormBloc  {
 
   // ignore: close_sinks
   final __streamController = PublishSubject();
-
   Stream get __stream =>__streamController.stream;
 
-  
+
   void didChanged(String data){
     __streamController.sink.add(data);
   }
 
   void _registerFiled( BaseFormFiledState field, String key) {
-    if( _fields.containsKey(key))  throw FormatException('key已经存在');
+//    if( _fields.containsKey(key))  throw FormatException('key已经存在');
     _fields[key] = field;
   }
 
-  getFiledValue(String key) {
-    return _fields[key].value;
+  getFieldValue(String key)  => _fields[key].value;
+  getFieldsValue() {
+    return _fields.map( (key, value){
+        return new MapEntry(key, value.value);
+    });
   }
+
 
   dispose(){
     __streamController.close();
+    _fields.clear();
   }
 
 }
@@ -61,8 +65,10 @@ class BlocProvider extends InheritedWidget {
 class BaseForm extends StatefulWidget {
   final Widget child;
 
+  Function onChanged;
   BaseForm({
     Key key,
+    this.onChanged,
     @required this.child })
       : assert( child != null),
         super(key: key);
@@ -82,8 +88,14 @@ class BaseFormState extends State<BaseForm> {
   }
 
 
-  getFiledValue(String key){
-    return _formBloc.getFiledValue(key);
+  getFieldValue(String key) => _formBloc.getFieldValue(key);
+  getFieldsValue() => _formBloc.getFieldsValue();
+
+
+  void _fieldDidChange() {
+    if (widget.onChanged != null)
+      widget.onChanged();
+//    _forceRebuild();
   }
   @override
   Widget build(BuildContext context) {
@@ -100,9 +112,8 @@ class BaseFormState extends State<BaseForm> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
-    super.dispose();
     _formBloc.dispose();
+    super.dispose();
   }
 }
 
@@ -119,20 +130,23 @@ class BaseFormFiled<T> extends StatefulWidget {
     this.enable = true,
     this.initialValue,
     this.builder,
-    this.onSave,
+    this.onSave
   }) : super(key: key);
 
   @override
   BaseFormFiledState createState() => BaseFormFiledState();
 }
 
-class BaseFormFiledState<T> extends State < BaseFormFiled<T> > {
+class BaseFormFiledState<T> extends State<BaseFormFiled<T>> {
 
-  T value;
+  T _value;
+
+  T get value => _value;
+
   @override
   void initState() {
     super.initState();
-    value = widget.initialValue;  /// 初始化默认值
+    _value = widget.initialValue;  /// 初始化默认值
   }
 
   @protected
@@ -141,14 +155,19 @@ class BaseFormFiledState<T> extends State < BaseFormFiled<T> > {
   }
   @protected
   void setValue(T newValue) {   /// 更新值
-    value = newValue;
+    _value = newValue;
   }
 
+  void didChange(T value) {
+    setState(() {
+      _value = value;
+    });
+//    Form.of(context)?._fieldDidChange();
+  }
 
 
   @override
   Widget build(BuildContext context) {
-
     BlocProvider.of(context).formBloc._registerFiled(this, widget.fieldKey);
     return widget.builder(this);
   }

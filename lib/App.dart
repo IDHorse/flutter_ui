@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterappcrrm/router.dart';
-import 'package:flutterappcrrm/views/HomePage.dart';
-import 'package:flutterappcrrm/views/SeniorPage.dart';
 
 class App extends StatelessWidget {
   @override
