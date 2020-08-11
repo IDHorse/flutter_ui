@@ -15,16 +15,14 @@ class SearchBar extends StatefulWidget {
 }
 class _SearchBarState extends State<SearchBar> {
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 34,
       width: double.infinity,
-//      alignment: Alignment.centerLeft,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(2)),
-          color:  Pigment.fromString('#f7f7f7')),
+          color:  Pigment.fromString('#f2f2f2')),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,7 +42,7 @@ class _SearchBarState extends State<SearchBar> {
               child: Text(widget.hint),
             ) : Input(
                 hintText: widget.hint,
-                fillColor: Pigment.fromString('#f7f7f7')
+                fillColor: Pigment.fromString('#f2f2f2')
             ),
           )
         ],

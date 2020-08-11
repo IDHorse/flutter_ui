@@ -80,5 +80,9 @@ class _DyantownPageState extends BaseState<DyantownPage, DynatownViewModel> {
     );
   }
 
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => false;
+
 
 }

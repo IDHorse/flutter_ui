@@ -27,6 +27,34 @@ class TabNavPage extends StatelessWidget {
             ),
             FlatButton(
               onPressed: () {
+                  Navigator.of(context).pushNamed('/my_customer');
+              },
+              color: Colors.blue,
+              child: Text('我的客户', style: TextStyle(color: Colors.white),),
+            ),
+            FlatButton(
+              onPressed: () {
+                  Navigator.of(context).pushNamed('/add_customer');
+              },
+              color: Colors.blue,
+              child: Text('录入客户', style: TextStyle(color: Colors.white),),
+            ),
+            FlatButton(
+              onPressed: () {
+                  Navigator.of(context).pushNamed('/clue');
+              },
+              color: Colors.blue,
+              child: Text('线索池', style: TextStyle(color: Colors.white),),
+            ),
+            FlatButton(
+              onPressed: () {
+                  Navigator.of(context).pushNamed('/get_customer');
+              },
+              color: Colors.blue,
+              child: Text('我要淘客', style: TextStyle(color: Colors.white),),
+            ),
+            FlatButton(
+              onPressed: () {
                   Navigator.of(context).pushNamed('/cc');
               },
               color: Colors.blue,

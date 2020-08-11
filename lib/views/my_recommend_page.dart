@@ -4,7 +4,8 @@ import 'package:flutterappcrrm/base/BaseState.dart';
 import 'package:flutterappcrrm/entity/TypeTab.dart';
 import 'package:flutterappcrrm/view_models/my_recommend_view_model.dart';
 import 'package:flutterappcrrm/views/order_list.dart';
-import 'package:flutterappcrrm/views/search_bar.dart';
+import 'package:flutterappcrrm/components/search_bar.dart';
+import 'package:pigment/pigment.dart';
 
 class MyRecommendPage extends StatefulWidget {
   @override
@@ -12,22 +13,15 @@ class MyRecommendPage extends StatefulWidget {
 }
 
 class _MyRecommendPageState extends BaseState<MyRecommendPage, MyRecommendViewModel> {
-
-  final List<TypeTab> typeTabs =  <TypeTab> [
-    TypeTab("抢单大厅",  "all"),
-    TypeTab("待分配", "wii"),
-    TypeTab("已接单", "get"),
-    TypeTab("执行中", "ing"),
-    TypeTab("已完成", "done"),
-  ];
-
   PageController _pageController;
   TypeTab _currentTab;
+  int _currentIndex = 0;
 
   @override
   void onReady(MyRecommendViewModel viewModel) {
     _pageController = PageController();
-    _currentTab = typeTabs[0];
+    _currentTab = viewModel.typeTabs[0];
+
   }
 
   @override
@@ -54,13 +48,12 @@ class _MyRecommendPageState extends BaseState<MyRecommendPage, MyRecommendViewMo
                   child: SearchBar(),
                 )
               ),
-
               Text('筛选')
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: typeTabs.map( (item) {
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: viewModel.typeTabs.map( (item) {
               return GestureDetector(
                 onTap: (){
                   setState(() {
@@ -70,7 +63,7 @@ class _MyRecommendPageState extends BaseState<MyRecommendPage, MyRecommendViewMo
                 child: Container(
                   height: 42.0,
                   padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-                  child: Text(item.text),
+                  child: Text(item.text, style: TextStyle(color:  _currentTab == item ? Colors.blue : Colors.black ),),
                 ),
               );
             }).toList(),
@@ -78,7 +71,7 @@ class _MyRecommendPageState extends BaseState<MyRecommendPage, MyRecommendViewMo
           Expanded(
             child: PageView.builder(
               controller: _pageController,
-              itemCount: typeTabs.length,
+              itemCount: viewModel.typeTabs.length,
               itemBuilder: ( context, index) {
                 return OrderList(
                   currentTab: _currentTab,
@@ -90,6 +83,10 @@ class _MyRecommendPageState extends BaseState<MyRecommendPage, MyRecommendViewMo
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => false;
 
 
 }

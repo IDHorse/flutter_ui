@@ -4,7 +4,7 @@ import 'package:flutterappcrrm/base/IBaseView.dart';
 import 'package:provider/provider.dart';
 
 
-abstract class BaseState< V extends StatefulWidget, VM extends BaseViewModel > extends State<V> implements IBaseView {
+abstract class BaseState< V extends StatefulWidget, VM extends BaseViewModel > extends State<V> with AutomaticKeepAliveClientMixin implements IBaseView {
 
 
   VM viewModel;

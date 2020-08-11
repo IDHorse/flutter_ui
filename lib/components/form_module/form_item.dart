@@ -27,7 +27,7 @@ class FormItem extends  StatelessWidget {
               bottom: BorderSide(width: 0.2, color: Colors.grey )
           )
       ),
-      padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -51,7 +51,7 @@ class FormItem extends  StatelessWidget {
               bottom: BorderSide(width: 0.2, color: Colors.grey )
           )
         ),
-        padding: EdgeInsets.fromLTRB(5, 0, 5, 10),
+        padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
         child: Column(
           children: <Widget>[
             Container(

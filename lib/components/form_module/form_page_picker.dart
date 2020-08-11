@@ -24,7 +24,6 @@ class FormPagePicker extends BaseFormFiled<String> {
       initialValue: initialValue,
       builder: (field) {
         final _FormPagePickerState state = field;
-
         return  FormItem(
           title: title,
           child: GestureDetector(

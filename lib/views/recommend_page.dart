@@ -51,51 +51,51 @@ class _RecommendPageState extends BaseState<RecommendPage, RecommendViewModel> {
                         padding: EdgeInsets.only(left: 15.0),
                         child: Text('客户信息',style: TextStyle(color: Colors.white, fontSize: 16.0) ),
                       ),
-                      FormInput(
-                        title: '客户姓名',
-                        fieldKey: 'uname',
-                        initialValue: '王鹏',
-                      ),
-                      FormInput(
-                        title: '联系电话',
-                        fieldKey: 'phone',
-                        initialValue: '123123123',
-                      ),
-                      Container(
-                        color: Colors.blue,
-                        height: 48.0,
-                        alignment: Alignment.centerLeft,
-                        width: double.infinity,
-                        padding: EdgeInsets.only(left: 15.0),
-                        child: Text('客户意向',style: TextStyle(color: Colors.white, fontSize: 16.0) ),
-                      ),
-                      FormLabelPicker(
-                        title: '租售',
-                        fieldKey: 'intention'
-                      ),
-                      FormPagePicker(
-                        title: '城市',
-                        fieldKey: 'city',
-                        initialValue: '123123123',
-                        child: CityPicker(),
-                      ),
-                      FormInput(
-                        title: '区域',
-                        fieldKey: 'region',
-                        initialValue: '王鹏',
-                      ),
-                      FormPagePicker(
-                        title: '意向楼盘',
-                        fieldKey: 'building',
-                        initialValue: '123123123',
-                        child: CityPicker(),
-                      ),
-                      FormPagePicker(
-                        title: '选择置业顾问',
-                        fieldKey: 'building',
-                        initialValue: '123123123',
-                        child: DyantownPage()
-                      ),
+//                      FormInput(
+//                        title: '客户姓名',
+//                        fieldKey: 'uname',
+//                        initialValue: '王鹏',
+//                      ),
+//                      FormInput(
+//                        title: '联系电话',
+//                        fieldKey: 'phone',
+//                        initialValue: '123123123',
+//                      ),
+//                      Container(
+//                        color: Colors.blue,
+//                        height: 48.0,
+//                        alignment: Alignment.centerLeft,
+//                        width: double.infinity,
+//                        padding: EdgeInsets.only(left: 15.0),
+//                        child: Text('客户意向',style: TextStyle(color: Colors.white, fontSize: 16.0) ),
+//                      ),
+//                      FormLabelPicker(
+//                        title: '租售',
+//                        fieldKey: 'intention'
+//                      ),
+//                      FormPagePicker(
+//                        title: '城市',
+//                        fieldKey: 'city',
+//                        initialValue: '123123123',
+//                        child: CityPicker(),
+//                      ),
+//                      FormInput(
+//                        title: '区域',
+//                        fieldKey: 'region',
+//                        initialValue: '王鹏',
+//                      ),
+//                      FormPagePicker(
+//                        title: '意向楼盘',
+//                        fieldKey: 'building',
+//                        initialValue: '123123123',
+//                        child: CityPicker(),
+//                      ),
+//                      FormPagePicker(
+//                        title: '选择置业顾问',
+//                        fieldKey: 'building',
+//                        initialValue: '123123123',
+//                        child: DyantownPage()
+//                      ),
                     ],
                   ),
                 ),
@@ -120,6 +120,10 @@ class _RecommendPageState extends BaseState<RecommendPage, RecommendViewModel> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => false;
 
 
 }

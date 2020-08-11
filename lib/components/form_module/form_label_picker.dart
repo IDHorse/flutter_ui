@@ -10,14 +10,16 @@ class FormLabelPicker extends BaseFormFiled<String> {
 
 
 
+  List<Map<String,dynamic>> data = [];
 
   // 定义 controller
   FormLabelPicker({
     Key key,
     String fieldKey,
-    String initialValue,
+    List initialValue,
     String title,
-
+    @required this.data,
+    int factor
   }): super(
       key: key,
       fieldKey: fieldKey,
@@ -29,9 +31,9 @@ class FormLabelPicker extends BaseFormFiled<String> {
           title: title,
           child: LabelPicker(
             multiple: false,
-            data: state.data,
+            data: data,
             initialValue: [1],
-            factor: 4,
+            factor: factor,
           ),
         );
       }
@@ -43,10 +45,7 @@ class FormLabelPicker extends BaseFormFiled<String> {
 }
 
 class _FormLabelPickerState extends BaseFormFiledState<String> {
-  final List<Map<String,dynamic>> data = [
-    {"value": 0, 'name': '求购'},
-    {"value": 1, 'name': '求租'}
-  ];
+
 
   @override
   FormLabelPicker get widget => super.widget;   // 获取关联上下文widght

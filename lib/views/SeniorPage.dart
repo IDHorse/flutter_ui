@@ -41,6 +41,10 @@ class _SeniorPageState extends BaseState<SeniorPage, SeniorViewModel> {
     ));
   }
 
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => false;
+
  
   
 }
