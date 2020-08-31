@@ -1,22 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterappcrrm/views/add_customer_page.dart';
-import 'package:flutterappcrrm/views/change_guess_page.dart';
-import 'package:flutterappcrrm/views/change_region_page.dart';
-import 'package:flutterappcrrm/views/clue_page.dart';
-import 'package:flutterappcrrm/views/follow_page.dart';
-import 'package:flutterappcrrm/views/get_customer_page.dart';
-import 'package:flutterappcrrm/views/my_customer_page.dart';
-import 'package:flutterappcrrm/views/my_recommend_page.dart';
-import 'package:flutterappcrrm/views/recommend_page.dart';
-import 'package:flutterappcrrm/views/salesroom_page.dart';
-import 'package:flutterappcrrm/views/tabnav_page.dart';
-import 'package:flutterappcrrm/views/transfer_page.dart';
+import 'package:flutterappcrrm/pages/enter_customer/add_customer_page.dart';
+import 'package:flutterappcrrm/pages/change_guess_page.dart';
+import 'package:flutterappcrrm/pages/change_region_page.dart';
+import 'package:flutterappcrrm/pages/clue_page.dart';
+import 'package:flutterappcrrm/pages/enter_customer/create_customer_page.dart';
+import 'package:flutterappcrrm/pages/enter_customer/follow_up_page.dart';
+import 'package:flutterappcrrm/pages/enter_customer/update_customer_page.dart';
+import 'package:flutterappcrrm/pages/get_customer_page.dart';
+import 'package:flutterappcrrm/pages/my_customer_page.dart';
+import 'package:flutterappcrrm/pages/my_recommend_page.dart';
+import 'package:flutterappcrrm/pages/recommend_page.dart';
+import 'package:flutterappcrrm/pages/salesroom_page.dart';
+import 'package:flutterappcrrm/pages/tabnav_page.dart';
+import 'package:flutterappcrrm/pages/transfer_page.dart';
 
 class RouterManage {
 
   static void push(context, route) {
-    Navigator.push(context, route);
+    Navigator.of(context).pushNamed(route);
+  }
+
+  static void pushParams(context, route, arguments) {
+    Navigator.of(context).pushNamed(route,  arguments:  arguments);
   }
 
   static final initialRoute = '/';
@@ -27,15 +33,16 @@ class RouterManage {
     '/my_recommend': (BuildContext context ) => MyRecommendPage(),
     '/my_customer': (BuildContext context ) => MyCustomerPage(),
     '/check_salesroom': (BuildContext context ) => SalesroomPage(),
-    '/follow': (BuildContext context ) => FollowPage(),
+    'xiaodangjia://flutter/crm/add_customer/follow_up': (BuildContext context ) => FollowUpPage(),
+    'xiaodangjia://flutter/crm/add_customer/update_customer': (BuildContext context ) => UpdateCustomerPage(),
     '/transfer': (BuildContext context ) => TransferPage(),
-    '/add_customer': (BuildContext context ) => AddCustomerPage(),
+    'xiaodangjia://flutter/crm/add_customer': (BuildContext context ) => AddCustomerPage(),
+    'xiaodangjia://flutter/crm/create_customer': (BuildContext context ) => CreateCustomerPage(),
     '/clue': (BuildContext context ) => CluePage(),
     '/get_customer': (BuildContext context ) => GetCustomerPage(),
     '/change_guess': (BuildContext context ) => ChangeGuessPage(),
     '/change_region': (BuildContext context ) => ChangeRegionPage(),
   };
-
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
@@ -50,22 +57,21 @@ class RouterManage {
         //带参数的处理方式
         switch(name){
           default:
-            route = CupertinoPageRoute(
-                builder: (context) => pageContentBuilder(context, arguments: settings.arguments)
-            );
+            route = MaterialPageRoute(
+                builder: (context) => pageContentBuilder(context, settings.arguments));
             break;
         }
       }else{
         //不带参数的处理方式
         switch(name){
           case '/login':
-            route = CupertinoPageRoute(
+            route = MaterialPageRoute(
                 builder: (context) => pageContentBuilder(context),
                 fullscreenDialog: true
             );
             break;
           default:
-            route = CupertinoPageRoute(
+            route = MaterialPageRoute(
                 builder: (context) => pageContentBuilder(context)
             );
             break;

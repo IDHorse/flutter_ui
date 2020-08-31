@@ -1,4 +1,5 @@
-import 'package:flutterappcrrm/base/BaseViewModel.dart';
+
+import 'package:flutterappcrrm/base/base_view_model.dart';
 
 class RecommendViewModel extends BaseViewModel {
 

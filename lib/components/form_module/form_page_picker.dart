@@ -1,11 +1,8 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterappcrrm/components/form_module/form_item.dart';
 import 'package:flutterappcrrm/components/form_module/index.dart';
-import 'package:flutterappcrrm/components/form_module/popup.dart';
-import 'package:flutterappcrrm/views/city_picker_page.dart';
+import 'package:flutterappcrrm/components/popup.dart';
 
 // ignore: must_be_immutable
 class FormPagePicker extends BaseFormFiled<String> {

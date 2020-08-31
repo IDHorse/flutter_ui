@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
+import 'package:flutterappcrrm/components/list_item.dart';
 import 'package:rxdart/rxdart.dart';
 
 
@@ -27,8 +27,21 @@ class FormBloc  {
   getFieldValue(String key)  => _fields[key].value;
   getFieldsValue() {
     return _fields.map( (key, value){
-        return new MapEntry(key, value.value);
+      return new MapEntry(key, value.value);
     });
+  }
+
+  void _fieldDidChange(value) {
+    __streamController.sink.add('update');
+  }
+  setFieldValue(String key, value) {
+    _fields[key].setValue(value);
+    _fieldDidChange(value);
+  }
+
+  setFieldEnable(String key, bool v){
+    _fields[key].didAble(v);
+    _fieldDidChange(v);
   }
 
 
@@ -52,7 +65,7 @@ class BlocProvider extends InheritedWidget {
 
   static BlocProvider of(BuildContext context) =>
       // ignore: deprecated_member_use
-      context.inheritFromWidgetOfExactType(BlocProvider);
+  context.inheritFromWidgetOfExactType(BlocProvider);
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) {
@@ -76,34 +89,31 @@ class BaseForm extends StatefulWidget {
   BaseFormState createState() => BaseFormState();
 
 }
+
 class BaseFormState extends State<BaseForm> {
 
   FormBloc _formBloc;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _formBloc = FormBloc();
   }
 
-
   getFieldValue(String key) => _formBloc.getFieldValue(key);
   getFieldsValue() => _formBloc.getFieldsValue();
+  setFieldValue(String key, value)=> _formBloc.setFieldValue(key, value);
+  /// 让某个元素无法使用
+  setFieldEnable(String key, bool v)=>_formBloc.setFieldEnable(key, v);
 
 
-  void _fieldDidChange() {
-    if (widget.onChanged != null)
-      widget.onChanged();
-//    _forceRebuild();
-  }
   @override
   Widget build(BuildContext context) {
     return  BlocProvider(
       formBloc: _formBloc,
       child: StreamBuilder(
           stream: _formBloc.__stream,
-          builder: (context, snapshot) {
+          builder: ( BuildContext context, AsyncSnapshot snapshot) {
             return widget.child;
           }
       ),
@@ -121,12 +131,14 @@ class BaseFormFiled<T> extends StatefulWidget {
   final initialValue;
   final bool enable;
   final String fieldKey;
+  final String placeholder;
   final Widget Function(BaseFormFiledState field) builder;
   final void Function() onSave;
 
   const BaseFormFiled({
     Key key,
     @required this.fieldKey,
+    this.placeholder,
     this.enable = true,
     this.initialValue,
     this.builder,
@@ -140,19 +152,25 @@ class BaseFormFiled<T> extends StatefulWidget {
 class BaseFormFiledState<T> extends State<BaseFormFiled<T>> {
 
   T _value;
+  String _placeholder;
+  bool _enable = true;
 
   T get value => _value;
+  String get placeholder => _placeholder;
+  bool get  enable => _enable;
 
   @override
   void initState() {
     super.initState();
+    _placeholder = widget.placeholder;  /// 初始化默认值
     _value = widget.initialValue;  /// 初始化默认值
+    _enable = widget.enable;  /// 初始化默认值
   }
 
   @protected
   void save() {
-
   }
+
   @protected
   void setValue(T newValue) {   /// 更新值
     _value = newValue;
@@ -162,14 +180,20 @@ class BaseFormFiledState<T> extends State<BaseFormFiled<T>> {
     setState(() {
       _value = value;
     });
-//    Form.of(context)?._fieldDidChange();
+    BlocProvider.of(context).formBloc._fieldDidChange(_value);
   }
 
+  void didAble(bool v){
+    setState((){
+      _enable = v;
+    });
+    BlocProvider.of(context).formBloc._fieldDidChange(_value);
+  }
 
   @override
   Widget build(BuildContext context) {
     BlocProvider.of(context).formBloc._registerFiled(this, widget.fieldKey);
-    return widget.builder(this);
+    return  widget.builder(this);
   }
 
 }

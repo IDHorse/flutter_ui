@@ -17,7 +17,10 @@ class FormTextArea extends BaseFormFiled<String> {
   FormTextArea({
     String initialValue,
     String fieldKey,
+    String hintText,
     String title,
+    int maxLines = 4,
+    int maxLength = 200,
     this.focusNode,
     this.controller,
     Key key,
@@ -28,12 +31,12 @@ class FormTextArea extends BaseFormFiled<String> {
       builder: (field) {
         final _FormTextAreaState state = field;
         return FormItem(
-          inline: false,
+            inline: false,
             title: title,
             child:  TextField(
                 controller: state._effectiveController,
-                maxLines: 4, //最大行数
-                maxLength: 200,
+                maxLines: maxLines, //最大行数
+                maxLength: maxLength,
                 focusNode: focusNode,
                 style: TextStyle(
                   fontSize: 18,
@@ -42,12 +45,6 @@ class FormTextArea extends BaseFormFiled<String> {
                 ),
                 textInputAction: TextInputAction.done,
                 onSubmitted: (_) {
-//                  // 点击键盘上的 "下一步" 回调
-////                focusNode.unfocus();
-//                  widget.getFiledValue(
-//                      widget.itemKey.toString() ,  _controller.text.toString()
-//                  );
-////                    FocusScope.of(context).requestFocus(focusNodePassword);
                 },
                 decoration: InputDecoration(
                     isDense: true,
@@ -63,7 +60,7 @@ class FormTextArea extends BaseFormFiled<String> {
                     //错误提示的行数
                     hintMaxLines: 1,
                     // 提示文本行数
-                    hintText: '请输入跟进内容，必填',
+                    hintText: hintText,
                     //提示文本
                     hintStyle: TextStyle(
                         color: Colors.grey,
@@ -103,13 +100,6 @@ class _FormTextAreaState extends BaseFormFiledState<String> {
   }
 
   void _handleControllerChanged() {
-    // Suppress changes that originated from within this class.
-    //
-    // In the case where a controller has been passed in to this widget, we
-    // register this change listener. In these cases, we'll also receive change
-    // notifications for changes originating from within this class -- for
-    // example, the reset() method. In such cases, the FormField value will
-    // already have been set.
     if (_effectiveController.text != value) didChange(_effectiveController.text);
   }
 
