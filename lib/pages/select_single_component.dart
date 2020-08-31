@@ -36,7 +36,7 @@ class _SelectComponentState extends State<SelectComponent>
     Size size = renderObject.paintBounds.size;
     var vector3 = renderObject.getTransformTo(null)?.getTranslation();
     setState(() {
-      _modalHeight = MediaQuery.of(context).size.height - vector3[1] - 100;
+      _modalHeight = MediaQuery.of(context).size.height - vector3[1];
       _modal = MediaQuery.of(context).size.height - vector3[1] - 140;
     });
   }

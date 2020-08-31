@@ -1,10 +1,7 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FontSize {
-  // ignore: top_level_instance_method
-  static var  fontSize10 =  ScreenUtil().setSp(10);
-  // ignore: top_level_instance_method
-  static var  fontSize11 =  ScreenUtil().setSp(11);
+
   // ignore: top_level_instance_method
   static var  fontSize12 =  ScreenUtil().setSp(12);
   // ignore: top_level_instance_method

@@ -7,7 +7,7 @@ import 'package:pigment/pigment.dart';
 class SearchBar extends StatefulWidget {
 
   bool enabled;
-  String hint;
+  String placeholder;
   Widget leading;
   Widget trailing;
   Function onClick;
@@ -19,7 +19,7 @@ class SearchBar extends StatefulWidget {
     this.trailing,
     this.onClick,
     this.onSubmitted,
-    this.hint = '请搜索'
+    this.placeholder = '请搜索'
   }) : super(key: key);
 
   _SearchBarState createState()=> _SearchBarState();
@@ -80,11 +80,11 @@ class _SearchBarState extends State<SearchBar> {
                         widget.onClick();
                       },
                       child: Container(
-                        child: Text(widget.hint),
+                        child: Text(widget.placeholder),
                       ) ,
                     ): Input(
                         controller: _controller,
-                        hintText: widget.hint,
+                        hintText: widget.placeholder,
                         fillColor: Pigment.fromString('#f2f2f2'),
                         onSubmitted: widget.onSubmitted,
 

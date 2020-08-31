@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterappcrrm/components/label_choose.dart';
 import 'package:flutterappcrrm/components/search_bar.dart';
-import 'package:flutterappcrrm/pages//lite_card.dart';
+import 'package:flutterappcrrm/pages/my_customer/customer_card.dart';
 import 'package:flutterappcrrm/pages//select_single_component.dart';
 import 'package:flutterappcrrm/pages//tab_view.dart';
 
@@ -101,7 +101,7 @@ class GetCustomerPage extends StatelessWidget {
                 child: ListView.builder(
                     itemCount: 15,
                     itemBuilder: (context, index) {
-                      return ListCard();
+                      return CustomerCard();
                     }),
               ),
             ),

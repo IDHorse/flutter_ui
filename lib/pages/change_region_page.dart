@@ -40,7 +40,7 @@ class ChangeRegionPage extends StatelessWidget {
                             title: "当前状态",
                             initialValue: "私客(求购新房)",
                           ),
-                          FormPicker(
+                          FormLabelChoose(
                             fieldKey: 'intention',
                             title: '转换后状态',
                             options: [

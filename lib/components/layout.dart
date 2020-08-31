@@ -16,7 +16,9 @@ class Layout extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 375, height: 812)..init(context);
+
+//    ScreenUtil.instance = ScreenUtil(width: 375, height: 812)..init(context);
+
     return SafeArea(
       child: Column(
         children: <Widget>[

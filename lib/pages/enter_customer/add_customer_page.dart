@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,41 +6,14 @@ import 'package:flutterappcrrm/components/label_choose.dart';
 import 'package:flutterappcrrm/components/layout.dart';
 import 'package:flutterappcrrm/components/list_item.dart';
 import 'package:flutterappcrrm/components/search_bar.dart';
+import 'package:flutterappcrrm/res/font_size.dart';
 import 'package:flutterappcrrm/router.dart';
 import 'package:flutterappcrrm/view_models/enter_customer/add_customer_vm.dart';
 import 'package:pigment/pigment.dart';
 
-/// 页面顶部 滚动提示信息
-// ignore: must_be_immutable
-class AlertMessage extends  StatelessWidget {
-  String msg;
-  AlertMessage({
-    @required this.msg,
-  }): super();
+import 'components/allert_message.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Pigment.fromString('#FFF2DE'),
-      width: double.infinity,
-      height: 42,
-      alignment: Alignment.center,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text( msg , 
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: ScreenUtil().setSp(14),
-                color: Pigment.fromString("#E77105")
-              )
-          )
-        ],
-      ),
-    );
-  }
 
-}
 
 class AddCustomerPage extends StatefulWidget {
   @override
@@ -66,11 +35,16 @@ class _AddCustomerPageState extends BaseState<AddCustomerPage, AddCustomerVM> {
               color: Colors.white,
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 18),
               alignment: Alignment.centerLeft,
-              child: Text("查询客户手机号", textAlign: TextAlign.left, style: TextStyle( fontWeight: FontWeight.w600, fontSize:  15, color: Pigment.fromString("#333333")),),
+              child: Text("查询客户手机号", textAlign: TextAlign.left, style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize:  FontSize.fontSize14,
+                  color: Pigment.fromString("#333333")
+              )
+              ),
             ),
             SearchBar(
                 onSubmitted: (text){
-                  RouterManage.push(context, "xiaodangjia://flutter/crm/create_customer");
+                  RouterManage.push(context, "xiaodangjia://flutter/crm/search_output");
                 }
             ),
             ListItem.custom(
@@ -92,9 +66,9 @@ class _AddCustomerPageState extends BaseState<AddCustomerPage, AddCustomerVM> {
                 child: LabelPicker(
                   options: [
                     { "value": 13121177622, "label": "131 211 77622"},
-                    { "value": 13121177622, "label": "131 211 77622"},
-                    { "value": 13121177622, "label": "131 211 77622"},
-                    { "value": 13121177622, "label": "131 211 77622"},
+                    { "value": 131, "label": "131 211 77622"},
+                    { "value": 32, "label": "131 211 77622"},
+                    { "value": 44, "label": "131 211 77622"},
                   ],
                 ),
               )

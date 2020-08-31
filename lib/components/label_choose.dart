@@ -116,11 +116,11 @@ class _LabelPickerState extends State<LabelPicker> {
         },
         child: Container(
             constraints: BoxConstraints(
-//                minHeight: 32.0,
-//                minWidth: 60
+                minHeight: 30.0,
+                minWidth: 75.0
             ),
             color: _values.contains(bean.value) ? Pigment.fromString("#E7F3FF") : Pigment.fromString('#F6F6F6'),
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             child: Text(bean.label, textAlign: TextAlign.center,  style: TextStyle(  fontSize : 16, color: _values.contains(bean.value) ? Pigment.fromString("#1884F0") : Pigment.fromString('#666666'),),),
         )
     );
@@ -129,16 +129,12 @@ class _LabelPickerState extends State<LabelPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topLeft,
-      child: Wrap(
+    return  Wrap(
         spacing: widget.factor != null ? 0.0 : 10.0, // 主轴(水平)方向间距
         runSpacing: 10.0, // 纵轴
         children: _options.map((bean) {
           return _drawWidget(bean);
         }).toList(),
-      ),
     );
-
   }
 }

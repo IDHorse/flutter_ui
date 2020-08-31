@@ -1,5 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterappcrrm/base/base_view.dart';
 import 'package:flutterappcrrm/base/base_view_model.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,7 @@ abstract class BaseState< V extends StatefulWidget, VM extends BaseViewModel > e
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    ScreenUtil.instance = ScreenUtil(width: 375, height: 812)..init(context);
     return ChangeNotifierProvider<VM>(
       create: (_) => _vm,
       child:  Consumer<VM>(

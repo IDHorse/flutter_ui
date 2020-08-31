@@ -6,14 +6,15 @@ import 'package:flutterappcrrm/pages/change_region_page.dart';
 import 'package:flutterappcrrm/pages/clue_page.dart';
 import 'package:flutterappcrrm/pages/enter_customer/create_customer_page.dart';
 import 'package:flutterappcrrm/pages/enter_customer/follow_up_page.dart';
+import 'package:flutterappcrrm/pages/enter_customer/search_output_page.dart';
 import 'package:flutterappcrrm/pages/enter_customer/update_customer_page.dart';
 import 'package:flutterappcrrm/pages/get_customer_page.dart';
-import 'package:flutterappcrrm/pages/my_customer_page.dart';
+import 'package:flutterappcrrm/pages/my_customer/my_customer_page.dart';
 import 'package:flutterappcrrm/pages/my_recommend_page.dart';
 import 'package:flutterappcrrm/pages/recommend_page.dart';
 import 'package:flutterappcrrm/pages/salesroom_page.dart';
 import 'package:flutterappcrrm/pages/tabnav_page.dart';
-import 'package:flutterappcrrm/pages/transfer_page.dart';
+import 'package:flutterappcrrm/pages/my_customer/transfer_page.dart';
 
 class RouterManage {
 
@@ -33,9 +34,10 @@ class RouterManage {
     '/my_recommend': (BuildContext context ) => MyRecommendPage(),
     '/my_customer': (BuildContext context ) => MyCustomerPage(),
     '/check_salesroom': (BuildContext context ) => SalesroomPage(),
-    'xiaodangjia://flutter/crm/add_customer/follow_up': (BuildContext context ) => FollowUpPage(),
-    'xiaodangjia://flutter/crm/add_customer/update_customer': (BuildContext context ) => UpdateCustomerPage(),
-    '/transfer': (BuildContext context ) => TransferPage(),
+    'xiaodangjia://flutter/crm/follow_up': (BuildContext context ) => FollowUpPage(),
+    'xiaodangjia://flutter/crm/update_customer': (BuildContext context ) => UpdateCustomerPage(),
+    'xiaodangjia://flutter/crm/search_output': (BuildContext context ) => SearchOutputPage(),
+    'xiaodangjia://flutter/crm/transfer': (BuildContext context ) => TransferPage(),
     'xiaodangjia://flutter/crm/add_customer': (BuildContext context ) => AddCustomerPage(),
     'xiaodangjia://flutter/crm/create_customer': (BuildContext context ) => CreateCustomerPage(),
     '/clue': (BuildContext context ) => CluePage(),

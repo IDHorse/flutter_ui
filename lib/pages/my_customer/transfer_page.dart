@@ -40,9 +40,10 @@ class TransferPage extends StatelessWidget {
                             title: "当前状态",
                             initialValue: "私客(求购新房)",
                           ),
-                        FormPicker(
+                        FormLabelChoose(
                           fieldKey: 'intention',
                           title: '转换后状态',
+                          inline: true,
                           options: [
                             {"value": 0, 'label': '地区淘'},
                             {"value": 1, 'label': '店淘'},
